@@ -9,16 +9,6 @@ import pinoHTTP from 'pino-http';
 
 const app = express();
 
-/************************************************** */
-// logger.fatal('fatal');
-// logger.error('error');
-// logger.warn('warn');
-// logger.info('info');
-// logger.debug('debug');
-// logger.trace('trace');
-
-/** ***************************************************** */
-
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(express.json({ limit: '16kb' }));
 app.use(limiter); // express-rate-limit middleware
@@ -39,13 +29,15 @@ app.use('/api/v1/notify', notificationRouter);
 connectDB()
 	.then(() => {
 		app.listen(process.env.SERVER_PORT || 8000, () => {
+			console.log(`Notification service listening to PORT ${process.env.SERVER_PORT}`);
 			logger.info(
 				`Notification service listening to PORT ${process.env.SERVER_PORT}`
 			);
 		});
 	})
-	// IF DB CONNECT FAILED, CATCH ERROR
-	.catch((err) => logger.error(err, "Can't connect to DB:")); 
+	.catch((err) => 
+	logger.error(err, "Can't connect to DB:")
+); 
 
 app.get('/health', (req, res) => {
     logger.info('Notification Service is up and Running !');
