@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(express.json({ limit: '16kb' }));
 app.use(limiter); // express-rate-limit middleware
 app.use(securedHeaders());
-app.use(pinoHTTP({ logger }));
+app.use(pinoHTTP(logger));
 
 const connectDB = async () => {
 		const startTime = Date.now();
