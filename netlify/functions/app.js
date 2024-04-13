@@ -56,10 +56,4 @@ app.get('/health', (req, res) => {
 	});
 });
 
-app.listen(process.env.SERVER_PORT || 8000, () => {
-	logger.info(
-		`Notification service listening to PORT ${process.env.SERVER_PORT}`
-	);
-});
-
 export const handler = serverless(app);
