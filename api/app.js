@@ -4,7 +4,10 @@ export function GET(request) {
 
 }
 
-const server;
+export function POST(request) {
+	return new Response
+	(`Hello from ${process.env.VERCEL_REGION}`);
+}
 
 // export const config = {
 // 	runtime: 'nodejs'
