@@ -15,6 +15,8 @@ app.use(limiter); // express-rate-limit middleware
 app.use(securedHeaders());
 app.use(pinoHTTP(logger));
 
+console.log('\nlevel ' + logger.level);
+
 const connectDB = async () => {
 		const startTime = Date.now();
 		const connect = await mongoose.connect(process.env.DB_URL);
